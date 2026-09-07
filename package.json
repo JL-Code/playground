@@ -10,14 +10,17 @@
   },
   "dependencies": {
     "@mescius/spread-sheets": "^19.1.0",
+    "@mescius/spread-sheets-barcode": "^19.2.2",
     "@mescius/spread-sheets-charts": "^19.2.2",
     "@mescius/spread-sheets-designer": "^19.2.2",
     "@mescius/spread-sheets-designer-resources-cn": "^19.2.2",
     "@mescius/spread-sheets-io": "^19.2.2",
+    "@mescius/spread-sheets-languagepackages": "^19.2.2",
     "@mescius/spread-sheets-pdf": "^19.2.2",
     "@mescius/spread-sheets-pivot-addon": "^19.2.2",
     "@mescius/spread-sheets-print": "^19.2.2",
     "@mescius/spread-sheets-resources-zh": "^19.2.2",
+    "@mescius/spread-sheets-shapes": "^19.2.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

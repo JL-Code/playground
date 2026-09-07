@@ -14,6 +14,12 @@ importers:
       '@mescius/spread-sheets-charts':
         specifier: ^19.2.2
         version: 19.2.2
+      '@mescius/spread-sheets-designer':
+        specifier: ^19.2.2
+        version: 19.2.2
+      '@mescius/spread-sheets-designer-resources-cn':
+        specifier: ^19.2.2
+        version: 19.2.2
       '@mescius/spread-sheets-io':
         specifier: ^19.2.2
         version: 19.2.2
@@ -229,6 +235,12 @@ packages:
 
   '@mescius/spread-sheets-charts@19.2.2':
     resolution: {integrity: sha512-emVuMOe0Nar0Ay6T2H6yt/khFjPRUWB3W8ySER/WNVFDBXs11rJwC3h3pSDL1YX/O/C503t5U63WY0goXaLgpg==}
+
+  '@mescius/spread-sheets-designer-resources-cn@19.2.2':
+    resolution: {integrity: sha512-vM+tBrOYcSV9znzCcx32egMG5hiKVM03GoMIYXEjZGOQF4fr8WKErgWns9kxpajgyGBQVZeEtNOCaEGl4p9/ZA==}
+
+  '@mescius/spread-sheets-designer@19.2.2':
+    resolution: {integrity: sha512-V+74OJJ8hGT04dQxPyeJ3+SsyHztfEUqHCzCNhSEnqdHwIDkOeMKjCp9PuA4YG6W8S53hNosNHltV4RmJynd1A==}
 
   '@mescius/spread-sheets-io@19.2.2':
     resolution: {integrity: sha512-v66U4nrdKUyiGdgkTY7nFsT9PGf2atJqTMmT1VDGrw87/Mn96+k8IQWuj8DwDKquQSoM5KrvtVYQOQ+fu/rxAA==}
@@ -709,6 +721,10 @@ snapshots:
     dependencies:
       '@mescius/spread-sheets': 19.2.2
       '@mescius/spread-sheets-shapes': 19.2.2
+
+  '@mescius/spread-sheets-designer-resources-cn@19.2.2': {}
+
+  '@mescius/spread-sheets-designer@19.2.2': {}
 
   '@mescius/spread-sheets-io@19.2.2':
     dependencies:
