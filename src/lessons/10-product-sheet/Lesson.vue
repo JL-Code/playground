@@ -9,6 +9,7 @@ import {
   STATUS_LIST_SOURCE,
   productRowsToArray,
 } from "../../spread/productRows";
+import { nextSortAscending } from "../../spread/nextSortAscending";
 import { useSpread } from "../../spread/useSpread";
 
 const TITLE_ROW = 0;
@@ -150,14 +151,16 @@ function toggleFilter() {
   );
 }
 
-// TODO: 将数量排序方法改为切换排序，首次点击按数量排序，再次点击按数量排序的逆序，
-function sortByQtyDesc() {
+function sortByQty() {
   const s = requireSheet();
   if (!s) {
     return;
   }
   s.sortRange(DATA_ROW, 0, DATA_COUNT, COL_COUNT, true, [
-    { index: QTY_COL, ascending: false },
+    {
+      index: QTY_COL,
+      ascending: nextSortAscending(s.getSortState(), QTY_COL),
+    },
   ]);
 }
 
@@ -213,7 +216,7 @@ function toggleTable() {
         <button :disabled="sheet === null" type="button" @click="toggleFilter">
           打开筛选
         </button>
-        <button :disabled="sheet === null" type="button" @click="sortByQtyDesc">
+        <button :disabled="sheet === null" type="button" @click="sortByQty">
           按数量排序
         </button>
         <button :disabled="sheet === null" type="button" @click="toggleTable">
