@@ -13,3 +13,102 @@ body,
   color: #1a1a1a;
   background: #f4f5f7;
 }
+
+.app-shell {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  padding: 16px 12px;
+  background: #fff;
+  border-right: 1px solid #e3e5e8;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brand {
+  margin: 0 8px 12px;
+  font-weight: 650;
+  font-size: 14px;
+}
+
+.nav-link {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: #333;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.nav-link:hover {
+  background: #f0f2f5;
+}
+
+.nav-link-active {
+  background: #e8f0fe;
+  color: #174ea6;
+  font-weight: 600;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 16px;
+}
+
+.lesson {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 12px;
+}
+
+.lesson-header h1 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.lesson-description p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #444;
+}
+
+.lesson-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lesson-actions button {
+  appearance: none;
+  border: 1px solid #c5c9d0;
+  background: #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.lesson-actions button:hover:not(:disabled) {
+  background: #f6f7f9;
+}
+
+.lesson-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spread-host {
+  flex: 1;
+  min-height: 280px;
+  width: 100%;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+}
