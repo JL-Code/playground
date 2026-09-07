@@ -7,6 +7,7 @@ import LessonRowsCols from "./lessons/05-rows-cols/Lesson.vue";
 import LessonVueToSheet from "./lessons/06-vue-to-sheet/Lesson.vue";
 import LessonSheetToVue from "./lessons/07-sheet-to-vue/Lesson.vue";
 import LessonTwoWay from "./lessons/08-two-way/Lesson.vue";
+import LessonExcelIo from "./lessons/09-excel-io/Lesson.vue";
 
 export const lessonNav = [
   { to: "/lessons/workbook", label: "1. Workbook / Sheet" },
@@ -17,6 +18,7 @@ export const lessonNav = [
   { to: "/lessons/vue-to-sheet", label: "6. Vue → 表" },
   { to: "/lessons/sheet-to-vue", label: "7. 表 → Vue" },
   { to: "/lessons/two-way", label: "8. 双向订单表" },
+  { to: "/lessons/excel-io", label: "9. Excel 进出" },
 ] as const;
 
 export const router = createRouter({
@@ -31,5 +33,6 @@ export const router = createRouter({
     { path: "/lessons/vue-to-sheet", component: LessonVueToSheet },
     { path: "/lessons/sheet-to-vue", component: LessonSheetToVue },
     { path: "/lessons/two-way", component: LessonTwoWay },
+    { path: "/lessons/excel-io", component: LessonExcelIo },
   ],
 });
