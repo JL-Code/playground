@@ -9,6 +9,8 @@ import LessonSheetToVue from "./lessons/07-sheet-to-vue/Lesson.vue";
 import LessonTwoWay from "./lessons/08-two-way/Lesson.vue";
 import LessonExcelIo from "./lessons/09-excel-io/Lesson.vue";
 import LessonProductSheet from "./lessons/10-product-sheet/Lesson.vue";
+import LessonPivot from "./lessons/11-pivot/Lesson.vue";
+import LessonPrint from "./lessons/12-print/Lesson.vue";
 
 export const lessonNav = [
   { to: "/lessons/workbook", label: "1. Workbook / Sheet" },
@@ -21,6 +23,8 @@ export const lessonNav = [
   { to: "/lessons/two-way", label: "8. 双向订单表" },
   { to: "/lessons/excel-io", label: "9. Excel 进出" },
   { to: "/lessons/product-sheet", label: "10. 表格像产品" },
+  { to: "/lessons/pivot", label: "11. 数据透视" },
+  { to: "/lessons/print", label: "12. 打印 / PDF" },
 ] as const;
 
 export const router = createRouter({
@@ -37,5 +41,7 @@ export const router = createRouter({
     { path: "/lessons/two-way", component: LessonTwoWay },
     { path: "/lessons/excel-io", component: LessonExcelIo },
     { path: "/lessons/product-sheet", component: LessonProductSheet },
+    { path: "/lessons/pivot", component: LessonPivot },
+    { path: "/lessons/print", component: LessonPrint },
   ],
 });

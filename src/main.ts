@@ -4,5 +4,8 @@ import { router } from "./router";
 import "./styles/app.css";
 import "@mescius/spread-sheets/styles/gc.spread.sheets.excel2013white.css";
 import "@mescius/spread-sheets-io";
+import "@mescius/spread-sheets-pivot-addon";
+import "@mescius/spread-sheets-print";
+import "@mescius/spread-sheets-pdf";
 
 createApp(App).use(router).mount("#app");
