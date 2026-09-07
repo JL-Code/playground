@@ -7,5 +7,6 @@ import "@mescius/spread-sheets-io";
 import "@mescius/spread-sheets-pivot-addon";
 import "@mescius/spread-sheets-print";
 import "@mescius/spread-sheets-pdf";
+import "@mescius/spread-sheets-charts";
 
 createApp(App).use(router).mount("#app");

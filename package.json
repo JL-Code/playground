@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mescius/spread-sheets": "^19.1.0",
+    "@mescius/spread-sheets-charts": "^19.2.2",
     "@mescius/spread-sheets-io": "^19.2.2",
     "@mescius/spread-sheets-pdf": "^19.2.2",
     "@mescius/spread-sheets-pivot-addon": "^19.2.2",
