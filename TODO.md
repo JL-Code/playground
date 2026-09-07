@@ -1,11 +1,8 @@
 # Playground 后续教程
 
-已完成：课 1–5 表格核心，课 6–8 Vue 同步，课 9 Excel `.xlsx` 进出。刻意不做：官方 `@mescius/spread-sheets-vue`、Pinia 镜像整张表、在线代码编辑器。
+已完成：课 1–5 表格核心，课 6–8 Vue 同步，课 9 Excel `.xlsx` 进出，课 10 表格像产品。刻意不做：官方 `@mescius/spread-sheets-vue`、Pinia 镜像整张表、在线代码编辑器。
 
 ## 待做
-
-- [ ] **表格像产品**  
-  合并单元格、数据验证、条件格式、筛选/排序、Table。
 
 - [ ] **图表**  
   柱状/折线等，依赖 charts 插件。

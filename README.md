@@ -30,9 +30,11 @@ npm run dev
 | 表 → Vue | `/lessons/sheet-to-vue` | `src/lessons/07-sheet-to-vue/Lesson.vue` |
 | 双向订单表 | `/lessons/two-way` | `src/lessons/08-two-way/Lesson.vue` |
 | Excel 进出 | `/lessons/excel-io` | `src/lessons/09-excel-io/Lesson.vue` |
+| 表格像产品 | `/lessons/product-sheet` | `src/lessons/10-product-sheet/Lesson.vue` |
 
 生命周期：`src/spread/useSpread.ts`（`onMounted` 创建，`onUnmounted` `destroy`）。
 课 6–8 示范 Vue `ref` 与表格同步；事件在课页里 `bind`/`unbind`，不放进 `useSpread`。订单数组转换见 `src/spread/orders.ts`。
 课 9 用 `@mescius/spread-sheets-io` 做 `.xlsx` 导入导出（`main.ts` 副作用导入），样例与课 8 同一份 `DEFAULT_ORDERS`。
+课 10 用核心包演示合并、数据验证、条件格式、筛选/排序、Table；样例见 `src/spread/productRows.ts`。
 
 本仓库故意不使用 `@mescius/spread-sheets-vue`，以便直接学习 Workbook API。
