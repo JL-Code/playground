@@ -6,6 +6,7 @@ import LessonStyles from "./lessons/04-styles/Lesson.vue";
 import LessonRowsCols from "./lessons/05-rows-cols/Lesson.vue";
 import LessonVueToSheet from "./lessons/06-vue-to-sheet/Lesson.vue";
 import LessonSheetToVue from "./lessons/07-sheet-to-vue/Lesson.vue";
+import LessonTwoWay from "./lessons/08-two-way/Lesson.vue";
 
 export const lessonNav = [
   { to: "/lessons/workbook", label: "1. Workbook / Sheet" },
@@ -15,6 +16,7 @@ export const lessonNav = [
   { to: "/lessons/rows-cols", label: "5. 行列操作" },
   { to: "/lessons/vue-to-sheet", label: "6. Vue → 表" },
   { to: "/lessons/sheet-to-vue", label: "7. 表 → Vue" },
+  { to: "/lessons/two-way", label: "8. 双向订单表" },
 ] as const;
 
 export const router = createRouter({
@@ -28,5 +30,6 @@ export const router = createRouter({
     { path: "/lessons/rows-cols", component: LessonRowsCols },
     { path: "/lessons/vue-to-sheet", component: LessonVueToSheet },
     { path: "/lessons/sheet-to-vue", component: LessonSheetToVue },
+    { path: "/lessons/two-way", component: LessonTwoWay },
   ],
 });
