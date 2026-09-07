@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onUnmounted, ref, watch } from "vue";
+import { nextTick, onUnmounted, ref, watch } from "vue";
 import * as GC from "@mescius/spread-sheets";
 import LessonShell from "../../components/LessonShell.vue";
 import { createEnterSeed } from "../../spread/enterSeed";
@@ -23,7 +23,7 @@ const COL_COUNT = 4;
 
 const host = ref<HTMLElement | null>(null);
 const panelHost = ref<HTMLElement | null>(null);
-const { spread, sheet } = useDesigner(host);
+const { designer, spread, sheet } = useDesigner(host);
 const panelOpen = ref(false);
 const pivotSheetName = ref<string | null>(null);
 let pivotPanel: GC.Spread.Pivot.PivotPanel | null = null;
@@ -85,7 +85,7 @@ function destroyPanel() {
   panelHost.value?.replaceChildren();
 }
 
-function openFieldPanel() {
+async function openFieldPanel() {
   const wb = requireWorkbook();
   if (!wb) {
     return;
@@ -114,17 +114,19 @@ function openFieldPanel() {
     console.warn("字段面板宿主尚未挂载");
     return;
   }
+  panelOpen.value = true;
+  await nextTick();
   pivotPanel = new GC.Spread.Pivot.PivotPanel(
     DESIGNER_PANEL_NAME,
     pivot,
     el as HTMLDivElement,
   );
+  designer.value?.refresh();
   pivotSheetName.value = name;
-  panelOpen.value = true;
   wb.setActiveSheet(name);
 }
 
-function removePivot() {
+async function removePivot() {
   const wb = requireWorkbook();
   if (!wb) {
     return;
@@ -135,6 +137,8 @@ function removePivot() {
     return;
   }
   destroyPanel();
+  await nextTick();
+  designer.value?.refresh();
   const index = sheetIndexNamed(wb, name);
   if (index < 0) {
     console.warn("未找到透视工作表");
