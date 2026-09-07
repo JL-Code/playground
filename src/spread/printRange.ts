@@ -60,3 +60,38 @@ export function parsePrintRange(input: string): PrintRange | null {
     colCount: Math.abs(end.col - start.col) + 1,
   };
 }
+
+function colLetters(index: number): string {
+  let n = index + 1;
+  let letters = "";
+  while (n > 0) {
+    const rem = (n - 1) % 26;
+    letters = String.fromCharCode(65 + rem) + letters;
+    n = Math.floor((n - 1) / 26);
+  }
+  return letters;
+}
+
+function formatCell(row: number, col: number): string {
+  return `${colLetters(col)}${row + 1}`;
+}
+
+export function formatPrintRange(range: PrintRange): string {
+  const start = formatCell(range.row, range.col);
+  if (range.rowCount === 1 && range.colCount === 1) {
+    return start;
+  }
+  const end = formatCell(
+    range.row + range.rowCount - 1,
+    range.col + range.colCount - 1,
+  );
+  return `${start}:${end}`;
+}
+
+export function shouldFollowUsedRange(
+  current: string,
+  lastAuto: string,
+): boolean {
+  const trimmed = current.trim();
+  return trimmed === "" || trimmed === lastAuto;
+}

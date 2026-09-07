@@ -39,6 +39,6 @@ npm run dev
 课 9 用 `@mescius/spread-sheets-io` 做 `.xlsx` 导入导出（`main.ts` 副作用导入），样例与课 8 同一份 `DEFAULT_ORDERS`。
 课 10 用核心包演示合并、数据验证、条件格式、筛选/排序、Table；样例见 `src/spread/productRows.ts`。
 课 11 用 `@mescius/spread-sheets-pivot-addon` 做透视（`main.ts` 副作用导入）；明细由 `src/spread/orderMocks.ts` 的 `createOrderMocks` 生成。
-课 12 用 print / pdf 插件做 `printInfo`、打印预览和导出 PDF；样例复用课 10 的 `productRows.ts`。
+课 12 用 print / pdf 插件做 `printInfo`、打印预览和导出 PDF；样例为 36 行 × 7 列（课 10 产品行加仓库/类别/备注并拉长）。
 
 本仓库故意不使用 `@mescius/spread-sheets-vue`，以便直接学习 Workbook API。
