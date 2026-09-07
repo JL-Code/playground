@@ -2,6 +2,7 @@
 import { ref, watch } from "vue";
 import * as GC from "@mescius/spread-sheets";
 import LessonShell from "../../components/LessonShell.vue";
+import { createEnterSeed } from "../../spread/enterSeed";
 import { useSpread } from "../../spread/useSpread";
 
 const host = ref<HTMLElement | null>(null);
@@ -23,11 +24,7 @@ function whenSheetReady(fn: (s: GC.Spread.Sheets.Worksheet, wb: GC.Spread.Sheets
   fn(s, wb);
 }
 
-watch(sheet, (s) => {
-  if (s && s.getValue(0, 0) == null) {
-    seed(s);
-  }
-}, { immediate: true });
+watch(sheet, createEnterSeed(seed), { immediate: true });
 
 function addSheet() {
   whenSheetReady((_s, wb) => {

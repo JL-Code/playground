@@ -18,18 +18,20 @@ export function useSpread(host: Ref<HTMLElement | null>): {
 
     applySpreadLicense();
     const workbook = new GC.Spread.Sheets.Workbook(el, { sheetCount: 1 });
+    const onActiveSheetChanged = () => {
+      sheet.value = workbook.getActiveSheet();
+    };
+
     spread.value = workbook;
     sheet.value = workbook.getActiveSheet();
+    workbook.bind(GC.Spread.Sheets.Events.ActiveSheetChanged, onActiveSheetChanged);
 
-    workbook.bind(GC.Spread.Sheets.Events.ActiveSheetChanged, () => {
-      sheet.value = workbook.getActiveSheet();
+    onUnmounted(() => {
+      workbook.unbind(GC.Spread.Sheets.Events.ActiveSheetChanged, onActiveSheetChanged);
+      workbook.destroy();
+      spread.value = null;
+      sheet.value = null;
     });
-  });
-
-  onUnmounted(() => {
-    spread.value?.destroy();
-    spread.value = null;
-    sheet.value = null;
   });
 
   return { spread, sheet };

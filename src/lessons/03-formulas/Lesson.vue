@@ -2,6 +2,7 @@
 import { ref, watch } from "vue";
 import * as GC from "@mescius/spread-sheets";
 import LessonShell from "../../components/LessonShell.vue";
+import { createEnterSeed } from "../../spread/enterSeed";
 import { useSpread } from "../../spread/useSpread";
 
 const host = ref<HTMLElement | null>(null);
@@ -18,9 +19,7 @@ function seed(s: GC.Spread.Sheets.Worksheet) {
   s.getCell(5, 0).value("改 B 列数字，C 列公式会像 computed 一样重算");
 }
 
-watch(sheet, (s) => {
-  if (s && s.getValue(0, 0) == null) seed(s);
-}, { immediate: true });
+watch(sheet, createEnterSeed(seed), { immediate: true });
 
 function writeSum() {
   const s = sheet.value;

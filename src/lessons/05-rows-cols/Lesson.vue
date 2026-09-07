@@ -2,6 +2,7 @@
 import { ref, watch } from "vue";
 import * as GC from "@mescius/spread-sheets";
 import LessonShell from "../../components/LessonShell.vue";
+import { createEnterSeed } from "../../spread/enterSeed";
 import { useSpread } from "../../spread/useSpread";
 
 const host = ref<HTMLElement | null>(null);
@@ -16,9 +17,7 @@ function seed(s: GC.Spread.Sheets.Worksheet) {
   s.setArray(0, 0, rows);
 }
 
-watch(sheet, (s) => {
-  if (s && s.getValue(0, 0) == null) seed(s);
-}, { immediate: true });
+watch(sheet, createEnterSeed(seed), { immediate: true });
 
 function requireAnchor(s: GC.Spread.Sheets.Worksheet): { row: number; col: number } | null {
   const sel = s.getSelections()[0];
