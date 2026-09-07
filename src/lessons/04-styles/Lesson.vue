@@ -24,7 +24,15 @@ function seed(s: GC.Spread.Sheets.Worksheet) {
 
 watch(sheet, createEnterSeed(seed), { immediate: true });
 
-function eachSelectedCell(s: GC.Spread.Sheets.Worksheet, fn: (row: number, col: number) => void) {
+/**
+ * 遍历当前选区中的每个单元格
+ * @param s - 当前激活的 Sheet
+ * @param fn - 遍历函数
+ */
+function eachSelectedCell(
+  s: GC.Spread.Sheets.Worksheet,
+  fn: (row: number, col: number) => void,
+) {
   const selections = s.getSelections();
   if (!selections.length) {
     console.warn("请先选中单元格");
@@ -43,6 +51,11 @@ function eachSelectedCell(s: GC.Spread.Sheets.Worksheet, fn: (row: number, col: 
   }
 }
 
+/**
+ * 应用标题样式
+ * @param s - 当前激活的 Sheet
+ * @returns void
+ */
 function applyHeaderStyle() {
   const s = sheet.value;
   if (!s) {
@@ -55,7 +68,10 @@ function applyHeaderStyle() {
     style.foreColor = "#ffffff";
     style.backColor = "#4472C4";
     style.hAlign = GC.Spread.Sheets.HorizontalAlign.center;
-    style.borderBottom = new GC.Spread.Sheets.LineBorder("#2F5496", GC.Spread.Sheets.LineStyle.thin);
+    style.borderBottom = new GC.Spread.Sheets.LineBorder(
+      "#2F5496",
+      GC.Spread.Sheets.LineStyle.thin,
+    );
     s.setStyle(row, col, style);
   });
 }
@@ -111,19 +127,36 @@ function clearStyle() {
     <LessonShell title="样式" :ready="sheet !== null">
       <template #description>
         <p>
-          <code>Style</code> 相当于 class：字体、前景/背景、对齐、边框。数字格式是
-          <code>formatter</code>，不是 CSS。按钮作用于<strong>当前选区</strong>。
+          <code>Style</code> 相当于
+          class：字体、前景/背景、对齐、边框。数字格式是
+          <code>formatter</code>，不是
+          CSS。按钮作用于<strong>当前选区</strong>。
         </p>
         <p>
-          建议：选中第 1 行点「标题样式」；选中金额列点「货币」；占比列点「百分比」；日期列点「日期」。
+          建议：选中第 1
+          行点「标题样式」；选中金额列点「货币」；占比列点「百分比」；日期列点「日期」。
         </p>
       </template>
       <template #actions>
-        <button :disabled="sheet === null" type="button" @click="applyHeaderStyle">标题样式</button>
-        <button :disabled="sheet === null" type="button" @click="applyCurrency">货币</button>
-        <button :disabled="sheet === null" type="button" @click="applyPercent">百分比</button>
-        <button :disabled="sheet === null" type="button" @click="applyDate">日期</button>
-        <button :disabled="sheet === null" type="button" @click="clearStyle">清除样式</button>
+        <button
+          :disabled="sheet === null"
+          type="button"
+          @click="applyHeaderStyle"
+        >
+          标题样式
+        </button>
+        <button :disabled="sheet === null" type="button" @click="applyCurrency">
+          货币
+        </button>
+        <button :disabled="sheet === null" type="button" @click="applyPercent">
+          百分比
+        </button>
+        <button :disabled="sheet === null" type="button" @click="applyDate">
+          日期
+        </button>
+        <button :disabled="sheet === null" type="button" @click="clearStyle">
+          清除样式
+        </button>
       </template>
     </LessonShell>
     <div ref="host" class="spread-host" />

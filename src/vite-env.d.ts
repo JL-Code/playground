@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
+declare module "@mescius/spread-sheets-resources-zh";
+
 interface ImportMetaEnv {
   readonly VITE_SPREADJS_LICENSE?: string;
 }
