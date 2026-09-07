@@ -8,5 +8,8 @@ import "@mescius/spread-sheets-pivot-addon";
 import "@mescius/spread-sheets-print";
 import "@mescius/spread-sheets-pdf";
 import "@mescius/spread-sheets-charts";
+import "@mescius/spread-sheets-designer-resources-cn";
+import "@mescius/spread-sheets-designer";
+import "@mescius/spread-sheets-designer/styles/gc.spread.sheets.designer.min.css";
 
 createApp(App).use(router).mount("#app");
