@@ -34,6 +34,7 @@ npm run dev
 | 数据透视 | `/lessons/pivot` | `src/lessons/11-pivot/Lesson.vue` |
 | 打印 / PDF | `/lessons/print` | `src/lessons/12-print/Lesson.vue` |
 | 图表 | `/lessons/charts` | `src/lessons/13-charts/Lesson.vue` |
+| Designer | `/lessons/designer` | `src/lessons/14-designer/Lesson.vue` |
 
 生命周期：`src/spread/useSpread.ts`（`onMounted` 创建，`onUnmounted` `destroy`）。
 课 6–8 示范 Vue `ref` 与表格同步；事件在课页里 `bind`/`unbind`，不放进 `useSpread`。订单数组转换见 `src/spread/orders.ts`。
@@ -42,5 +43,6 @@ npm run dev
 课 11 用 `@mescius/spread-sheets-pivot-addon` 做透视（`main.ts` 副作用导入）；明细由 `src/spread/orderMocks.ts` 的 `createOrderMocks` 生成。
 课 12 用 print / pdf 插件做 `printInfo`、打印预览和导出 PDF；样例为 36 行 × 7 列（课 10 产品行加仓库/类别/备注并拉长）。
 课 13 用 `@mescius/spread-sheets-charts` 做柱状 / 折线 / 饼图（`main.ts` 副作用导入）；样例为三产品 × 四季度 + 合计行。
+课 14 用 `@mescius/spread-sheets-designer` 挂 Ribbon（`useDesigner`，不是 `useSpread`）；透视走新 Sheet 空表 + `PivotPanel`，不硬编码 `pivot.add`。Designer 密钥见 `.env.example` 的 `VITE_SPREADJS_DESIGNER_LICENSE`。
 
 本仓库故意不使用 `@mescius/spread-sheets-vue`，以便直接学习 Workbook API。
