@@ -3,16 +3,23 @@ import { ref, watch } from "vue";
 import * as GC from "@mescius/spread-sheets";
 import LessonShell from "../../components/LessonShell.vue";
 import { chartSheetArray } from "../../spread/chartSheet";
+import { SINGLE_CHART_NAME, TRIO_CHARTS } from "../../spread/chartTrio";
 import { createEnterSeed } from "../../spread/enterSeed";
 import { useSpread } from "../../spread/useSpread";
 
-const CHART_NAME = "SalesChart";
 const COLUMN_LINE_RANGE = "A1:D5";
 const PIE_HELPER_RANGE = "F1:G4";
 const CHART_X = 420;
 const CHART_Y = 10;
 const CHART_WIDTH = 480;
 const CHART_HEIGHT = 280;
+
+const ChartType = GC.Spread.Sheets.Charts.ChartType;
+const TRIO_TYPE = {
+  column: ChartType.columnClustered,
+  line: ChartType.line,
+  pie: ChartType.pie,
+} as const;
 
 const host = ref<HTMLElement | null>(null);
 const { sheet } = useSpread(host);
@@ -37,9 +44,9 @@ function requireSheet(): GC.Spread.Sheets.Worksheet | null {
   return s;
 }
 
-function findChart(s: GC.Spread.Sheets.Worksheet) {
+function findChart(s: GC.Spread.Sheets.Worksheet, name: string) {
   try {
-    return s.charts.get(CHART_NAME);
+    return s.charts.get(name);
   } catch {
     return undefined;
   }
@@ -57,17 +64,28 @@ function writePieHelper(s: GC.Spread.Sheets.Worksheet) {
   ]);
 }
 
+function removeIfPresent(s: GC.Spread.Sheets.Worksheet, name: string) {
+  if (findChart(s, name)) {
+    s.charts.remove(name);
+  }
+}
+
+function removeTrio(s: GC.Spread.Sheets.Worksheet) {
+  for (const spec of TRIO_CHARTS) {
+    removeIfPresent(s, spec.name);
+  }
+}
+
 function addColumnChart() {
   const s = requireSheet();
   if (!s) {
     return;
   }
-  if (findChart(s)) {
-    s.charts.remove(CHART_NAME);
-  }
+  removeTrio(s);
+  removeIfPresent(s, SINGLE_CHART_NAME);
   s.charts.add(
-    CHART_NAME,
-    GC.Spread.Sheets.Charts.ChartType.columnClustered,
+    SINGLE_CHART_NAME,
+    ChartType.columnClustered,
     CHART_X,
     CHART_Y,
     CHART_WIDTH,
@@ -81,12 +99,12 @@ function changeToLine() {
   if (!s) {
     return;
   }
-  const chart = findChart(s);
+  const chart = findChart(s, SINGLE_CHART_NAME);
   if (!chart) {
     console.warn("还没有图表");
     return;
   }
-  chart.chartType(GC.Spread.Sheets.Charts.ChartType.line);
+  chart.chartType(ChartType.line);
   chart.dataRange(COLUMN_LINE_RANGE);
 }
 
@@ -95,12 +113,12 @@ function changeToPie() {
   if (!s) {
     return;
   }
-  const chart = findChart(s);
+  const chart = findChart(s, SINGLE_CHART_NAME);
   if (!chart) {
     console.warn("还没有图表");
     return;
   }
-  chart.chartType(GC.Spread.Sheets.Charts.ChartType.pie);
+  chart.chartType(ChartType.pie);
   writePieHelper(s);
   chart.dataRange(PIE_HELPER_RANGE);
 }
@@ -110,11 +128,44 @@ function removeChart() {
   if (!s) {
     return;
   }
-  if (!findChart(s)) {
+  if (!findChart(s, SINGLE_CHART_NAME)) {
     console.warn("还没有图表");
     return;
   }
-  s.charts.remove(CHART_NAME);
+  s.charts.remove(SINGLE_CHART_NAME);
+}
+
+function addTrioCharts() {
+  const s = requireSheet();
+  if (!s) {
+    return;
+  }
+  removeIfPresent(s, SINGLE_CHART_NAME);
+  writePieHelper(s);
+  for (const spec of TRIO_CHARTS) {
+    removeIfPresent(s, spec.name);
+    s.charts.add(
+      spec.name,
+      TRIO_TYPE[spec.kind],
+      spec.x,
+      spec.y,
+      spec.width,
+      spec.height,
+      spec.range,
+    );
+  }
+}
+
+function removeTrioChart(name: string, label: string) {
+  const s = requireSheet();
+  if (!s) {
+    return;
+  }
+  if (!findChart(s, name)) {
+    console.warn(`还没有${label}`);
+    return;
+  }
+  s.charts.remove(name);
 }
 </script>
 
@@ -124,15 +175,18 @@ function removeChart() {
       <template #description>
         <p>
           样例是三产品 × 四季度，末行合计（
-          <code>chartSheetArray</code>）。
-          <code>charts.add</code> 用簇状柱形绑
-          <code>A1:D5</code>（不含合计）。同一张
-          <code>SalesChart</code> 可改
-          <code>chartType</code> 为折线（仍
-          <code>A1:D5</code>）或饼图（
-          <code>writePieHelper</code> 写入
-          <code>F1:G4</code>，因
-          <code>B1:D1,B6:D6</code> 不抛错但不按产品切片）。依赖
+          <code>chartSheetArray</code>）。前四颗按钮管一张
+          <code>SalesChart</code>：
+          <code>charts.add</code> 簇状柱形绑
+          <code>A1:D5</code>，再改
+          <code>chartType</code> 为折线或饼图（饼图用
+          <code>F1:G4</code>）。「三张一起出」会先去掉
+          <code>SalesChart</code>，再
+          <code>add</code> 三个不同名字（
+          <code>SalesColumn</code> /
+          <code>SalesLine</code> /
+          <code>SalesPie</code>），可分别
+          <code>remove</code>。依赖
           <code>@mescius/spread-sheets-charts</code>（<code>main.ts</code>
           副作用导入）。
         </p>
@@ -149,6 +203,30 @@ function removeChart() {
         </button>
         <button :disabled="sheet === null" type="button" @click="removeChart">
           移除图表
+        </button>
+        <button :disabled="sheet === null" type="button" @click="addTrioCharts">
+          三张一起出
+        </button>
+        <button
+          :disabled="sheet === null"
+          type="button"
+          @click="removeTrioChart(TRIO_CHARTS[0]!.name, '柱状图')"
+        >
+          移除柱状
+        </button>
+        <button
+          :disabled="sheet === null"
+          type="button"
+          @click="removeTrioChart(TRIO_CHARTS[1]!.name, '折线图')"
+        >
+          移除折线
+        </button>
+        <button
+          :disabled="sheet === null"
+          type="button"
+          @click="removeTrioChart(TRIO_CHARTS[2]!.name, '饼图')"
+        >
+          移除饼图
         </button>
       </template>
     </LessonShell>
