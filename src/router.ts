@@ -12,6 +12,7 @@ import LessonProductSheet from "./lessons/10-product-sheet/Lesson.vue";
 import LessonPivot from "./lessons/11-pivot/Lesson.vue";
 import LessonPrint from "./lessons/12-print/Lesson.vue";
 import LessonCharts from "./lessons/13-charts/Lesson.vue";
+import LessonDesigner from "./lessons/14-designer/Lesson.vue";
 
 export const lessonNav = [
   { to: "/lessons/workbook", label: "1. Workbook / Sheet" },
@@ -27,6 +28,7 @@ export const lessonNav = [
   { to: "/lessons/pivot", label: "11. 数据透视" },
   { to: "/lessons/print", label: "12. 打印 / PDF" },
   { to: "/lessons/charts", label: "13. 图表" },
+  { to: "/lessons/designer", label: "14. Designer" },
 ] as const;
 
 export const router = createRouter({
@@ -46,5 +48,6 @@ export const router = createRouter({
     { path: "/lessons/pivot", component: LessonPivot },
     { path: "/lessons/print", component: LessonPrint },
     { path: "/lessons/charts", component: LessonCharts },
+    { path: "/lessons/designer", component: LessonDesigner },
   ],
 });

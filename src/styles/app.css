@@ -144,3 +144,31 @@ body,
   font-size: 12px;
   white-space: pre-wrap;
 }
+
+.lesson-workspace {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.designer-host {
+  flex: 1;
+  min-width: 0;
+  min-height: 360px;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+}
+
+.pivot-panel-host {
+  flex-shrink: 0;
+  width: 280px;
+  min-height: 360px;
+  border: 1px solid #d0d5dd;
+  border-left: none;
+  background: #fff;
+}
+
+.pivot-panel-host[hidden] {
+  display: none;
+}
