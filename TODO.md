@@ -1,11 +1,11 @@
 # Playground 后续教程
 
-已完成：课 1–5 表格核心，课 6–8 Vue 同步，课 9 Excel `.xlsx` 进出，课 10 表格像产品，课 11 数据透视，课 12 打印 / PDF。刻意不做：官方 `@mescius/spread-sheets-vue`、Pinia 镜像整张表、在线代码编辑器。
+已完成：课 1–5 表格核心，课 6–8 Vue 同步，课 9 Excel `.xlsx` 进出，课 10 表格像产品，课 11 数据透视，课 12 打印 / PDF，课 13 图表。刻意不做：官方 `@mescius/spread-sheets-vue`、Pinia 镜像整张表、在线代码编辑器。
 
 ## 待做
 
-- [ ] **图表**  
-  柱状/折线等，依赖 charts 插件。
+- [x] **图表**  
+  课 13：`charts.add` 柱状 / 折线 / 饼图。见 `docs/superpowers/specs/2026-09-07-spreadjs-charts-design.md`。
 
 - [x] **打印 / PDF**  
   课 12：`printInfo` + 预览 + 导出 PDF。见 `docs/superpowers/specs/2026-09-07-spreadjs-print-pdf-design.md`。

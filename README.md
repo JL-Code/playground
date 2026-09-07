@@ -33,6 +33,7 @@ npm run dev
 | 表格像产品 | `/lessons/product-sheet` | `src/lessons/10-product-sheet/Lesson.vue` |
 | 数据透视 | `/lessons/pivot` | `src/lessons/11-pivot/Lesson.vue` |
 | 打印 / PDF | `/lessons/print` | `src/lessons/12-print/Lesson.vue` |
+| 图表 | `/lessons/charts` | `src/lessons/13-charts/Lesson.vue` |
 
 生命周期：`src/spread/useSpread.ts`（`onMounted` 创建，`onUnmounted` `destroy`）。
 课 6–8 示范 Vue `ref` 与表格同步；事件在课页里 `bind`/`unbind`，不放进 `useSpread`。订单数组转换见 `src/spread/orders.ts`。
@@ -40,5 +41,6 @@ npm run dev
 课 10 用核心包演示合并、数据验证、条件格式、筛选/排序、Table；样例见 `src/spread/productRows.ts`。
 课 11 用 `@mescius/spread-sheets-pivot-addon` 做透视（`main.ts` 副作用导入）；明细由 `src/spread/orderMocks.ts` 的 `createOrderMocks` 生成。
 课 12 用 print / pdf 插件做 `printInfo`、打印预览和导出 PDF；样例为 36 行 × 7 列（课 10 产品行加仓库/类别/备注并拉长）。
+课 13 用 `@mescius/spread-sheets-charts` 做柱状 / 折线 / 饼图（`main.ts` 副作用导入）；样例为三产品 × 四季度 + 合计行。
 
 本仓库故意不使用 `@mescius/spread-sheets-vue`，以便直接学习 Workbook API。
